@@ -3,7 +3,7 @@ repo_url: https://github.com/STOBG-Data-and-Analytics/cmic-project-analytics-doc
 theme: 
   name: material
   logo: assets/images/logo.svg
-  favicon: assets/images/sto_icon.png
+  # favicon: assets/images/sto_icon.png
   pallete:
     scheme: slate
   features:
@@ -13,57 +13,6 @@ theme:
 
 nav:
   - Home: index.md
-  - Vision:
-    - General: vision/index.md
-  - Product Management:
-    - General: product/general.md
-    - Data Dictionary: product/data-dictionary.md
-    - Source-to-Target Data Mapping: product/source-to-target-map.md
-  - Business Analysis:
-    - General: business-analysis/business-analysis.md
-    - Conceptual Data Model: business-analysis/conceptual-data-model.md
-  - Project Management:
-    - Delivery Process Overview: project-management/process.md
-    - Issue Tracking (Jira): project-management/issue-tracking-jira.md
-    - Change Management: project-management/change-management-process.md
-    - Release Management: project-management/release-it.md
-    - Release Plan: project-management/release-plan.md
-    - Communication Plan: project-management/communication-plan.md
-    - Sprint Review Log: project-management/sprint-reviews.md
-    - Retrospectives Log: project-management/retrospectives.md
-  - BI:
-    - General: bi/index.md
-  - Data Science:
-    - General: data-science/index.md
-  - Data Products:
-    - General: data-products/index.md
-    - Project Performance Analytics (CMIC): data-products/perf-analytics.md
-    - Safety: data-products/safety.md
-  - Data Governance:
-    - General: data-governance/index.md
-  - Technology:
-    - Architecture: tech/architecture.md
-    - CI/CD Process: tech/ci-cd.md
-    - Engx: tech/engx.md
-    - KPI/Benchmarks Design: tech/kpi-benchmarks-design.md
-    - GC Forecast Report Design: tech/gc-forecast-report-design.md
-    - Workato Integration: tech/workato-integration.md
-    - Origami Integration: tech/origami-integration.md
-  - Quality Assurance:
-    - General: quality-assurance/index.md
-    - Test Strategy: quality-assurance/test-strategy.md
-    - "Test Plan: Trade Spend": quality-assurance/trade-spend-test-plan.md
-    - "Test Plan: Safety": quality-assurance/safety-test-plan.md
-    - "Test Plan: Project KPIs/Benchmark": quality-assurance/test-plan-benchmarks.md
-    - "Test Report: Project KPIs/Benchmark": quality-assurance/test-reports/test-report-benchmarks.md
-    - "Test Report: General": quality-assurance/test-reports/index.md
-    - "Test Report: Tools for Reporting": quality-assurance/test-reports/tool-for-reports.md
-    - "Test Report: Submittals": quality-assurance/test-reports/test-report-submittal.md
-    - "Test Report: TECH Sprint 2024.1": quality-assurance/test-reports/test-report-tech-2024-1.md
-  - Team:
-    - General: team/index.md
-    - Policies & Agreements: team/policies.md
-    - Onboarding: team/onboarding.md
 markdown_extensions:
   - attr_list
   - md_in_html
