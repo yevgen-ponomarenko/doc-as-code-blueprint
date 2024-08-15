@@ -1,0 +1,24 @@
+@startuml 
+title Bug Fix Use Cases
+
+skinparam actorStyle awesome
+
+
+"QA Engineer" as QA
+"Data Dev" as Dev
+"Release Engineer (as supervisor)" as RE
+
+
+"CI/CD Dev + QA" as (DEV_QA)
+"CI/CD UAT" as (UAT)
+"Fix in DEV/QA" as (bug_fix)
+"Fix in UAT" as (uat_fix)
+
+Dev --> bug_fix: develop
+QA --> bug_fix: test develop
+bug_fix ..> DEV_QA
+Dev --> uat_fix: merge "release/.."
+QA --> uat_fix: test "release/.."
+uat_fix ..> UAT
+
+@enduml

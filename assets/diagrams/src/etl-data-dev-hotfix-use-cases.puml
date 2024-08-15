@@ -1,0 +1,27 @@
+@startuml 
+title Hotfix Use Cases
+
+skinparam actorStyle awesome
+
+
+"QA Engineer" as QA
+"Data Dev" as Dev
+"Release Engineer" as RE
+"Product Manager" as Product
+
+
+"CI/CD Dev + QA" as (DEV_QA)
+"CI/CD UAT" as (UAT)
+"CI/CD PROD" as (PROD)
+"Hotfix Release" as (hotfix) 
+
+Dev --> hotfix: merge "hotfix" to "release/.."
+hotfix ..> UAT: deploy "release/.." in UAT env
+QA --> hotfix: test "releases/.." in QA/UAT, QA Sign-off
+Product --> UAT: UAT sign-off
+RE --> hotfix: merge hotfixed current "releases/.." to "main"
+RE ..> DEV_QA: merge/cherry-pick "hotfix" to "develop" 
+hotfix ..> PROD: deploy "main" in PROD env
+Product --> PROD: PROD sign-off
+
+@enduml

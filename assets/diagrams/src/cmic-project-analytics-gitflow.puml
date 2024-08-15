@@ -1,0 +1,69 @@
+@startuml
+
+skinparam {
+  shadowing false
+  defaultTextAlignment center
+  Arrow {
+    ArrowColor #4b6eaf
+    FontColor #4b6eaf
+  }
+}
+
+actor Developer
+actor QAEngineer
+actor ReleaseEngineer
+actor Stakeholder
+database GitRepo
+
+Developer -[#4b6eaf]-> GitRepo: clone, push, pull
+QAEngineer --> GitRepo
+
+rectangle "Continuous Integration (CI)" {
+  Developer --> (CreateFeatureBranch)
+  Developer --> (CommitAndPushChanges)
+  Developer --> (SubmitPullRequest)
+  (SubmitPullRequest) .-> (BuildAndTest)
+  (SubmitPullRequest) .-> (CodeReview)
+  (BuildAndTest) .-> (MergePullRequestToDevelopment)
+  (CodeReview) .-> (MergePullRequestToDevelopment)
+}
+
+rectangle "Development (DEV)" {
+  (MergePullRequestToDevelopment) .-> (DeployToDEV):[deploy]
+  Developer --> (TestInDEV)
+}
+
+rectangle "Quality Assurance (QA)" {
+  (TestInDEV) .-> (DeployToQA):[approve]
+  QAEngineer --> (TestInQA)
+}
+
+rectangle "User Acceptance Testing (UAT)" {
+  ReleaseEngineer --> (CreateReleaseBranch)
+  (TestInQA) .-> (CreateReleaseBranch): [approval]
+  (CreateReleaseBranch) .-> (DeployToUAT): [deploy]
+  Stakeholder --> (ValidateInUAT)
+  QAEngineer --> (ValidateInUAT)
+}
+
+rectangle "Production (PROD)" {
+  ReleaseEngineer --> (MergeToMain)
+  (ValidateInUAT) .-> (MergeToMain): [approval]
+  (MergeToMain) .-> (DeployToProduction): [deploy]
+  Stakeholder --> (Uses)
+}
+
+rectangle "Hotfixes" {
+  Stakeholder --> (IdentifyProdBug)
+  (IdentifyProdBug) .-> (CreateHotfixBranch)
+  (CreateHotfixBranch) .-> (TestAndFix)
+  (TestAndFix) .-> (MergeHotfixToMain)
+  ReleaseEngineer --> (MergeHotfixToMain)
+  Developer --> (MergeHotfixToDevelopment)
+  (TestAndFix) .-> (MergeHotfixToDevelopment)
+  (MergeHotfixToMain) .-> (DeployToProduction): [deploy]
+  (MergeHotfixToDevelopment) .-> (DeployToDEV): [deploy]
+}
+
+note right of GitRepo: master, develop, feature, release, hotfix branches
+@enduml

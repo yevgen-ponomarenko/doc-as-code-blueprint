@@ -1,0 +1,67 @@
+@startuml 
+title Development tickets Release Use Cases
+
+skinparam actorStyle awesome
+
+
+"QA Engineer" as QA
+"Data Dev" as DataDev
+"BI Dev" as BIDev
+"Release Engineer (DevOps)" as DevOps
+"Product Team" as PT
+
+"Deploy DEV" as (DEV_deploy)
+"Deploy UAT" as (UAT_deploy)
+"Deploy QA" as (QA_deploy)
+"Deploy PROD" as (PROD_deploy)
+
+"Create PR" as (PR_create)
+"Review PR" as (PR_review)
+"Merge PR" as (PR_merge)
+"Quality Gate: AQA" as (test_automation)
+"Quality Gate: Dev Tests" as (dev_tests)
+
+"IaC/Platform Release" as (terraform_release)
+
+"Quality Gate: QA Sign-Off" as (QA_signoff)
+"Quality Gate: UAT Sign-Off" as (UAT_signoff)
+
+"Dev/QA Test" as (DEV_QA_test)
+"UAT Test" as (UAT_test)
+
+"MART PROD ready for BI" as (PROD_bi)
+
+DataDev --> PR_create
+DataDev --> PR_review
+QA --> PR_review
+BIDev --> PR_review
+PR_review ..> PR_merge: approve
+DataDev --> PR_merge
+DataDev ..> dev_tests: owns
+PR_merge -> dev_tests
+dev_tests --> DEV_deploy: ci/CD
+DEV_deploy -> test_automation
+
+QA ..> test_automation: owns
+QA ..> QA_deploy: approve
+test_automation -> QA_deploy: ci/CD
+DevOps --> terraform_release: ext. release process
+DataDev --> DEV_QA_test
+QA --> DEV_QA_test
+QA --> QA_signoff
+
+QA_signoff ..> UAT_deploy: approve
+UAT_deploy ..> terraform_release: depends on
+DevOps --> UAT_deploy: ci/cd
+QA --> UAT_test
+PT --> UAT_test
+BIDev --> UAT_test
+PT --> UAT_signoff
+
+UAT_signoff ..> PROD_deploy: approve
+PROD_deploy ..> terraform_release: depends on
+DevOps --> PROD_deploy: ci/cd
+PROD_deploy --> PROD_bi
+BIDev --> PROD_bi
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+title TECH Stories: Current JIRA flow + DOR
+
+state NEW: Business Value or Tech need identified
+state NEW: Descriptive summary
+
+state BACKLOG: Description with required/available context
+
+state "DEV TO DO" as dev_todo: Prioritized
+state "DEV TO DO" as dev_todo: Clear Acceptance Criteria
+state "DEV TO DO" as dev_todo: **Data Modelling Done**
+state "DEV TO DO" as dev_todo: Estimated
+state "DEV TO DO" as dev_todo: QA Approach Agreed
+
+state "DEV IN PROGRESS" as dev_inpr: All dependencies resolved
+
+state "DEV COMPLETE" as dev_compl: PR reviewed and merged
+state "DEV COMPLETE" as dev_compl: Required artefacts delivered in DEV
+
+state "QA TO DO" as qa_todo: Static Code Analysis run successfully
+state "QA TO DO" as qa_todo: Dev tests run successfully
+
+state "QA IN PROGRESS" as qa_inpr: Required artefacts deployed in QA (if needed) 
+state "QA IN PROGRESS" as qa_inpr: Test Plan created (if needed)
+
+state "QA COMPLETE" as qa_compl: All found bugs closed
+state "QA COMPLETE" as qa_compl: Deployed in UAT (if needed)
+state "QA COMPLETE" as qa_compl: Quality assured per test plan
+state "QA COMPLETE" as qa_compl: Test plan updated
+
+state "CLOSED - COMPLETE" as closed_compl: PROD Deployed (if needed)
+
+state "CLOSED - CANCELLED" as closed_cancelled: Not needed, created by mistake, duplicate, etc
+
+NEW --> BACKLOG
+BACKLOG --> dev_todo
+dev_todo --> dev_inpr
+dev_inpr --> dev_compl
+dev_compl --> qa_todo
+qa_todo --> qa_inpr
+qa_inpr --> qa_compl
+qa_compl --> closed_compl
+
+ALL --> closed_cancelled
+
+@enduml
