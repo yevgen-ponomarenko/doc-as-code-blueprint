@@ -1,0 +1,34 @@
+@startuml 
+title Data Engineering Happy Path
+
+skinparam actorStyle awesome
+
+
+"QA Engineer" as QA
+"Data Dev" as Dev
+"Release Engineer" as RE
+
+
+"CI/CD Dev + QA" as (DEV_QA)
+"CI/CD UAT" as (UAT)
+"CI/CD PROD" as (PROD)
+
+skinparam actorStyle awesome
+
+
+"QA Engineer" as QA
+"Data Dev" as Dev
+"Release Engineer" as RE
+
+
+"CI/CD Dev + QA" as (DEV_QA)
+"CI/CD UAT" as (UAT)
+"CI/CD PROD" as (PROD)
+
+Dev --> DEV_QA: feature to develop
+QA ..> DEV_QA: ensure Quality Gates, approve QA deploy
+RE ..> DEV_QA: take QA signed-off develop for release/..
+RE --> UAT: create and push QA release/... for UAT
+RE --> PROD: release/.. to main 
+
+@enduml

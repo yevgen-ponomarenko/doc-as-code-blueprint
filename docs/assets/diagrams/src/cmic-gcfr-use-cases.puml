@@ -1,0 +1,27 @@
+@startuml 
+title General Conditions Forecast Report Use-Cases
+
+skinparam actorStyle awesome
+
+"Executive" as CEO
+"GCFR Manager" as Manager
+"GCFR Forecast Creator" as Creator
+"GCFR Forecast vs Actual Reporter" as Reporter
+
+
+"Create GCFR" as (Create)
+"Review GCFR" as (Review)
+"Create GCFR vs actual" as (Report)
+
+skinparam actorStyle awesome
+
+Creator --> Create: creates GCFR for given project
+Create ..> Review: get GCFR Ready for review
+Manager --> Review: reviews and approves GCFR by defined policies
+Review ..> Report: provides fulfilled template
+Creator <..> Reporter: coordinate
+Reporter --> Report: aligns forecasted GC spends vs actual at defined schedule
+Manager --> Report: reviews GCFR reports
+CEO --> Report: makes managerial decisions based on reports 
+
+@enduml

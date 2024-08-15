@@ -1,0 +1,28 @@
+@startuml
+title System Context for STOBG Data Platform
+
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Person(team, "D&A Team")
+Person_Ext(client, "Business Clients")
+System_Ext(cmic, "CMiC", "Project Performance Data Source")
+System_Ext(origami, "Origami", "Safety Data Product Source")
+System(perf_data_product, "Project Performance Analytics", "Data Product")
+System(safety_data_product, "Safety Analytics", "Data Product")
+System(documentation, "Data Platform Documentation", "Documentation Product")
+
+cmic --> perf_data_product:"CSV Exported"
+origami <--> safety_data_product:"REST API"
+team --> perf_data_product:"Deliver and Operate"
+team --> safety_data_product:"Deliver and Operate"
+team --> documentation:"Maintain"
+perf_data_product --> documentation: "Data Product Documentation\nPerformance Metrics"
+safety_data_product --> documentation: "Data Product Documentation\nPerformance Metrics"
+client --> perf_data_product: "KPI Analysis / Requirements"
+client --> safety_data_product: "KPI Analysis / Requirements"
+client <-- documentation: "Knowledge Base"
+
+SHOW_LEGEND()
+footer drawn with PlantUML v. %version() and C4-PlantUML v. C4Version()
+@enduml

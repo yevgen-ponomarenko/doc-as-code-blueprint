@@ -1,0 +1,67 @@
+@startuml
+
+title TECH Stories: Target JIRA flow + DOR
+
+state fork_state1 <<fork>>
+state fork_state2 <<fork>>
+state join_state1 <<join>>
+
+state NEW: Business Value or Tech need identified
+state NEW: Descriptive summary
+
+state BACKLOG: Descriptiion contains all functional requirements 
+state BACKLOG: Dependencies identified and linked
+
+
+state "DEV TO DO" as dev_todo: Prioritized
+state "DEV TO DO" as dev_todo: All non-functional requirements described/linked
+state "DEV TO DO" as dev_todo: Clear Acceptance Criteria
+state "DEV TO DO" as dev_todo: BIA/DA Data Modelling Done
+state "DEV TO DO" as dev_todo: STTM and Data Dictionary Provisioned
+state "DEV TO DO" as dev_todo: All dependencies resolved
+
+state "DEV IN PROGRESS" as dev_inpr: Estimated
+state "DEV IN PROGRESS" as dev_inpr: All dependencies resolved
+state "DEV IN PROGRESS" as dev_inpr: QA Approach Agreed
+
+state "DEV COMPLETE" as dev_compl: PR reviewed and merged
+state "DEV COMPLETE" as dev_compl: Required artefacts delivered in DEV
+
+state "QA TO DO" as qa_todo: Static Code Analysis run successfully
+state "QA TO DO" as qa_todo: Dev tests run successfully
+
+state "QA IN PROGRESS" as qa_inpr: Required artefacts deployed in QA (if needed) 
+state "QA IN PROGRESS" as qa_inpr: Test Plan created (if needed)
+
+state "QA COMPLETE" as qa_compl: All found bugs closed
+state "QA COMPLETE" as qa_compl: Quality assured per test plan
+state "QA COMPLETE" as qa_compl: Test plan updated
+
+state UAT: QA sign-off
+state UAT: Deployed in UAT
+state UAT: UAT artefacts created
+
+state "RELEASE READY" as release_rdy: UAT Signed-off
+state "RELEASE READY" as release_rdy: Test Report Created
+state "RELEASE READY" as release_rdy: All bugs closed
+
+state "CLOSED - COMPLETE" as closed_compl: Scheduled for next PROD Release
+state "CLOSED - COMPLETE" as closed_compl: Release Notes READY
+state "CLOSED - COMPLETE" as closed_compl: PROD Deployed
+NEW --> BACKLOG
+BACKLOG --> dev_todo
+dev_todo --> dev_inpr
+dev_inpr --> dev_compl
+dev_compl --> fork_state1
+fork_state1 --> qa_todo
+fork_state1 --> qa_compl: QA not needed or 100% automated
+qa_todo --> qa_inpr
+qa_inpr --> qa_compl
+qa_compl --> fork_state2
+fork_state2 --> UAT
+UAT --> release_rdy
+release_rdy --> join_state1
+fork_state2 --> join_state1: for stories not needed Release (e.g. Spikes, POCs, etc.)
+join_state1 --> closed_compl
+
+@enduml

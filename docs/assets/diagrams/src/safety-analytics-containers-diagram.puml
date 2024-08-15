@@ -1,0 +1,36 @@
+@startuml
+title Containers Diagram for Safety Data Product
+
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+System_Boundary(c1, "Safety Data Product") {
+    Container(ingestion_pipeline, "Ingest DAG", "Python, HttpOperator", "Queries Origami API by schedule")
+    Container(transformation_pipeline, "Transform DAG", "BigQuery operators", "Loads/Transforms staging data and builds MART")
+    ContainerDb(raw_database, "BLOB Storage", "Cloud Storage Bucket", "Stores new-line delimited JSON payloads")
+    ContainerDb(staging_database, "Staging Dataset", "BigQuery Tables/Views", "Stores staging data")
+    ContainerDb(mart_database, "MART Dataset", "BigQuery Tables/Views", "Stores modeled data for bi_tool")
+    Container(bi_tool, "BI Front-End", "Tableau", "Provides KPIs front-end", $tags="front-end")
+}
+
+Person_Ext(client, "Business Clients", "We do need PERSONAS!!! (initiative DOR)")
+
+System_Ext(origami, "Origami", "The external Origami instance - https://www.origamirisk.com/")
+System_Ext(domo, "DOMO", "Existing STOBG DOMO instance - https://www.domo.com/")
+
+Rel(client, domo, "Use Now (How?)")
+BiRel(domo, origami, "Integrates with")
+
+Rel(ingestion_pipeline, origami, "REST API calls")
+Rel(origami, ingestion_pipeline, "JSON Payloads")
+Rel(ingestion_pipeline, raw_database, "Writes Data to BLOB")
+Rel(raw_database, staging_database, "BQ loads BLOB")
+Rel(staging_database, mart_database, "BQ transforms Data")
+Rel(transformation_pipeline, staging_database, "BQ REST calls")
+
+Rel(bi_tool, mart_database, "Uses")
+Rel(client, bi_tool, "Will Love Using")
+
+SHOW_LEGEND()
+footer drawn with PlantUML v. %version() and C4-PlantUML v. C4Version()
+@enduml

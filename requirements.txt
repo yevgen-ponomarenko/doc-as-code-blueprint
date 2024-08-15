@@ -1,0 +1,7 @@
+mkdocs-material
+mkdocs-video
+mkdocs-build-plantuml-plugin
+mkdocs-glightbox
+mkdocs-drawio-file
+mkdocs-table-reader-plugin==0.6.2
+mkdocs-print-site-plugin
