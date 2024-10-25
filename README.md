@@ -1,5 +1,4 @@
-# STOBG Project Performance Analytics Documentation Source
-This Documentation as Code repository keeps the technical, end-user, and release documentation for CMiC Project Analytics.
+# Documenation as a code blueprint on MkDocs
 
 ## Built With
 This site is build by using [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
