@@ -1,4 +1,4 @@
-site_name: Documentation as a Code Blueprint
+site_name: Documentation as a Code Blueprint v0.1
 repo_url: https://github.com/yevgen-ponomarenko/doc-as-code-blueprint/
 theme: 
   name: material
@@ -15,6 +15,8 @@ nav:
   - Home: index.md
   - Project Management:
     - Change Management: project-management/change-management-process.md
+  - Release Management:
+    - Release Process Example: release-management/release-it.md 
   - About: about.md
 markdown_extensions:
   - attr_list
