@@ -11,6 +11,7 @@
 ### Project Stakeholders
 
 The first step in change management is identifying all project stakeholders. These are individuals or groups who:
+
  - Have a vested interest in the outcome of the project.
  - Are affected by the project.
  - Can influence the project.
@@ -22,6 +23,7 @@ Knowing the stakeholders is crucial as they can provide valuable input, identify
 ### Scope Baseline
 
 The second step is to establish the project's scope baseline. The scope baseline is a key project document that includes:
+
   - Project scope statement.
   - Work breakdown structure (WBS).
   - WBS dictionary.
@@ -34,15 +36,18 @@ It serves as a reference point against which project performance is measured and
 
 Change Request Management involves tracking and processing all changes to the project scope. It comprises three main stages:
 
-1. **Intake**:
+#### 1. **Intake**
+
    - Collect change requests from stakeholders.
    - Ensure that the change requests are documented and logged appropriately.
 
-2. **Impact Analysis**:
-   - Analyze the impact of proposed changes on project scope, schedule, cost, quality, and resources.
-   - Assess risks associated with the change.
+#### 2. **Impact Analysis**
 
-3. **Processing & Execution**:
+   - Analyze the impact of proposed changes on project scope, schedule, cost, quality, and resources.
+   2. Assess risks associated with the change.
+
+#### 3. **Processing & Execution**
+
    - Approve or reject changes based on the impact analysis.
    - If approved, update the relevant project documents and communicate the change to all stakeholders.
    - Implement and execute the change as per the approved plan.
