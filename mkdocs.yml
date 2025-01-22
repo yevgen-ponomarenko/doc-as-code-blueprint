@@ -1,8 +1,8 @@
-site_name: STOBG Data Analytics Documentation
-repo_url: https://github.com/STOBG-Data-and-Analytics/cmic-project-analytics-docs
+site_name: Documentation as a Code Blueprint
+repo_url: https://github.com/yevgen-ponomarenko/doc-as-code-blueprint/
 theme: 
   name: material
-  logo: assets/images/logo.svg
+  logo: assets/images/logo.png
   # favicon: assets/images/sto_icon.png
   pallete:
     scheme: slate
@@ -13,6 +13,9 @@ theme:
 
 nav:
   - Home: index.md
+  - Project Management:
+    - Change Management: project-management/change-management-process.md
+  - About: about.md
 markdown_extensions:
   - attr_list
   - md_in_html

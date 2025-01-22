@@ -1,3 +1,4 @@
+wheel
 mkdocs-material
 mkdocs-video
 mkdocs-build-plantuml-plugin
