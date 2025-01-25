@@ -18,7 +18,7 @@ nav:
   - Release Management:
     - Release Process Example: release-management/release-it.md
   - S.T.A.L.K.E.R 2:
-    - СТАЛКЕР 2 - Початок: stalker2/inceptions.md
+    - СТАЛКЕР 2 - Початок: stalker2/inception.md
   - About: about.md
 markdown_extensions:
   - attr_list
